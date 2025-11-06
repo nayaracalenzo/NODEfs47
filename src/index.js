@@ -1,8 +1,6 @@
 import express from 'express'
 import usuariosRoute from './routes/usuariosRoute.js'
 
-
-
 // app recebe as funcionalidades do express
 const app = express()
 
