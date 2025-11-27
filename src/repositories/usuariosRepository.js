@@ -21,7 +21,7 @@ export const updateUser = async (id, nome, email, senha, telefone) => {
     `, [nome, email, senha, telefone, id])
 }
 export const deleteUser = async (id) => {
-  return await client.query(`DELETE FROM users WHERE id = $1; 
-    RETURNING id
+  return await client.query(`DELETE FROM users WHERE id = $1 
+    RETURNING id; 
     `, [id])
 }
