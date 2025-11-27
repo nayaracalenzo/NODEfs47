@@ -1,5 +1,7 @@
-export const getAllUsers = () => { }
-export const getUser = () => { }
-export const createUser = () => { }
-export const updateUser = () => { }
-export const deleteUser = () => { }
+import client from '../config/db'
+
+export const getAllUsers = () => {}
+export const getUser = (id) => { }
+export const createUser = (nome, email, senha, telefone) => { }
+export const updateUser = (id, nome, email, senha, telefone) => { }
+export const deleteUser = (id) => { }
