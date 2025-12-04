@@ -1,4 +1,4 @@
-import * as usuariosService from '../services/usuariosService'
+import * as usuariosService from '../services/usuariosService.js'
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -27,6 +27,7 @@ export const createUser = async (req, res) => {
       return res.status(400).json({message: "Todos os campos são obrigatórios"})
     }
     const usuarioCriado = await usuariosService.createUser(nome, email, senha, telefone)
+    console.log(usuarioCriado)
     return res.status(201).json(usuarioCriado)
   } catch (error) {
     if (error.status === 409) {
@@ -40,9 +41,9 @@ export const updateUser = async (req, res) => {
   const { nome, email, senha, telefone } = req.body
 
   try {
-    if (!nome || !email || !senha || !telefone) {
-      return res.status(400).json({ message: "Todos os campos são obrigatórios" })
-    }
+    // if (!nome || !email || !senha || !telefone) {
+    //   return res.status(400).json({ message: "Todos os campos são obrigatórios" })
+    // }
     const usuarioAlterado = await usuariosService.updateUser(id, nome, email, senha, telefone)
     return res.status(200).json(usuarioAlterado)
   } catch (error) {
