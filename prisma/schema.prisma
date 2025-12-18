@@ -1,29 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
+model users {
+  id       Int @id @default (autoincrement())
+  nome     String @db.VarChar(50)
+  email    String @db.VarChar(50) @unique
+  senha    String @db.VarChar(100)
+  telefone String? @db.VarChar(11)
+}
 
+model categories {
+  id   Int @id @default (autoincrement())
+  nome String @db.VarChar(50)
+  products   products[]
+}
 
-//  CREATE TABLE IF NOT EXISTS users (
-//       id SERIAL PRIMARY KEY,
-//       nome VARCHAR(50) NOT NULL,
-//       email VARCHAR(50) UNIQUE NOT NULL,
-//       senha VARCHAR(100) NOT NULL,
-//       telefone VARCHAR(11)
-//     );
-//     CREATE TABLE IF NOT EXISTS categories (
-//       id SERIAL PRIMARY KEY,
-//       nome VARCHAR(50) NOT NULL
-//     );
-//     CREATE TABLE IF NOT EXISTS products (
-//       id SERIAL PRIMARY KEY,
-//       nome VARCHAR(50) NOT NULL,
-//       codigo VARCHAR(10) UNIQUE NOT NULL,
-//       valor_unitario DECIMAL(6,2) NOT NULL,
-//       categoria_id INT REFERENCES categories(id)
-//     );
+model products {
+  id             Int @id @default (autoincrement()) 
+  nome           String @db.VarChar(50)
+  codigo         String @db.VarChar(10) @unique
+  valor_unitario Decimal @db.Decimal(6, 2)
+  categoria_id   Int
+  categoria      categories @relation(fields: [categoria_id], references: [id])
+}

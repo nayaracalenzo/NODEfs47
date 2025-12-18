@@ -1,6 +1,6 @@
 import express from 'express'
 import usuariosRoute from './routes/usuariosRoute.js'
-import db from './config/db.js'
+import produtosRoute from './routes/produtosRoute.js'
 
 // app recebe as funcionalidades do express
 const app = express()
@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 
 //usar as rotas criadas em usuariosRoute
 app.use('/users',usuariosRoute)
+app.use('/products',produtosRoute)
 
 // app.listen serve pra escutar o servidor. Recebe 2 parâmetros - porta e arrow function
 app.listen(port, () => {
