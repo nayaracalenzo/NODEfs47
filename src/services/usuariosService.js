@@ -36,7 +36,7 @@ export const updateUser = async (id, nome, email, senha, telefone) => {
 }
 
 export const deleteUser = async (id) => {
-  const usuario = await usuarioRepository.getUser(id)
+  const usuario = await usuariosRepository.getUser(id)
   if (!usuario) {
     const error = new Error("Usuário não encontrado")
     error.status = 404

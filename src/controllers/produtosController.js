@@ -1,4 +1,4 @@
-
+import * as produtosService from '../services/produtosService.js'
 
 const getAllProducts = async (_req, res) => {
   try {
@@ -22,17 +22,16 @@ const getProduct = async (req, res) => {
 }
 const createProduct = async (req, res) => {
   const { nome, codigo, valor_unitario, categoria_id } = req.body
-  try {
-
+  // try {
     if (!nome || !codigo ||!valor_unitario || !categoria_id) {
       return res.status(400).json({message: "Todos os campos são obrigatórios"})
     }
     const product = await produtosService.createProduct(nome, codigo, valor_unitario, categoria_id)
     return res.status(201).json(product)
-  } catch (error) {
-    console.error(error)
-    return res.status(500).json({ message: "Erro ao criar produto", error })
-  }
+  // } catch (error) {
+  //   console.error(error)
+  //   return res.status(500).json({ message: "Erro ao criar produto", error })
+  // }
 }
 const updateProduct = async (req, res) => {
   const {id} = req.params
