@@ -19,23 +19,6 @@ export const getUser = async(req, res) => {
     return res.status(500).json({ message: "Erro ao buscar um usuário", error })
   }
 }
-export const createUser = async (req, res) => {
-  const {nome, email, senha, telefone} = req.body
-
-  try {
-    if (!nome || !email || !senha ) {
-      return res.status(400).json({message: "Todos os campos são obrigatórios"})
-    }
-    const usuarioCriado = await usuariosService.createUser(nome, email, senha, telefone)
-    console.log(usuarioCriado)
-    return res.status(201).json(usuarioCriado)
-  } catch (error) {
-    if (error.status === 409) {
-      return res.status(409).json({ message: error.message })
-    }
-    return res.status(500).json({message: "Erro ao criar usuário", error})
-  }
-}
 export const updateUser = async (req, res) => {
   const {id} = req.params
   const { nome, email, senha, telefone } = req.body

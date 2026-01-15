@@ -1,6 +1,7 @@
 import express from 'express'
 import usuariosRoute from './routes/usuariosRoute.js'
 import produtosRoute from './routes/produtosRoute.js'
+import authRoute from './routes/authRoute.js'
 
 // app recebe as funcionalidades do express
 const app = express()
@@ -14,7 +15,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-//usar as rotas criadas em usuariosRoute
+app.use('/auth',authRoute)
 app.use('/users',usuariosRoute)
 app.use('/products',produtosRoute)
 
