@@ -3,13 +3,7 @@ import prisma from "../config/db.js";
 export const getAllUsers = async () => {
   // const result = await client.query(`SELECT nome, email, telefone FROM users;`)
   // return result.rows
-  return await prisma.users.findMany({
-    select: {
-      id: true,
-      nome: true,
-      email: true,
-    }
-  })
+  return await prisma.users.findMany()
 }
 
 export const getUser = async (id) => {

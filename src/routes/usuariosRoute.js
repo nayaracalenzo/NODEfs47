@@ -3,9 +3,7 @@ import * as usuariosController from '../controllers/usuariosController.js'
 import { authMiddleware } from "../middleware/authMiddleware.js"
 
 const router = express.Router()
-
 router.get('/', usuariosController.getAllUsers)
-// rota para buscar um usuário: '/users/1'
 router.get('/:id', usuariosController.getUser)
 router.put('/:id', authMiddleware, usuariosController.updateUser)
 router.delete('/:id', authMiddleware, usuariosController.deleteUser)
